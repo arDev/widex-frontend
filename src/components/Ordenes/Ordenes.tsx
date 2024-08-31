@@ -11,10 +11,8 @@ import Orden from "../Orden/Orden";
 const Ordenes = () => {
   const { data, cargando } = useStock("http://localhost:5000/Stock/Listar");
   const [buscar, setBuscar] = useState("");
-  const [order, setOrder] = useState<IOrden | null>(null);
+  const [id, setId] = useState<number>(0);
  
-
-
   const resultado = !buscar
     ? data
     : data.filter(
@@ -24,10 +22,8 @@ const Ordenes = () => {
       );
 
   
-  const verOrden = (p:any ) => {
-    //navigate("/verorden");
-    
-    setOrder({ nro_pedido : p.nro_pedido, cod_client : "Algo"})
+  const verOrden = (p:number ) => {   
+    setId(p)
   };
 
   return (
@@ -64,7 +60,7 @@ const Ordenes = () => {
                 className="btn float-end btn-sm btn-widex"
                 data-bs-toggle="modal"
                 data-bs-target="#myModal"
-                onClick={() => verOrden( orden)}
+                onClick={() => verOrden( orden.id)}
             >
                 Ver
             </button>
@@ -85,7 +81,7 @@ const Ordenes = () => {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                          <Orden order={order}/>
+                          <Orden pId={id}/>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
