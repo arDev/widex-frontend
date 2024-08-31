@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { userStore } from "../stores/userStore";
+import { userStore } from "../../stores/userStore";
 
-import { IProducto } from "../Interfaces/IProducto";
+import { IProducto } from "../../Interfaces/IProducto";
 
 const Producto = (paramProducto: any) => {
   const agregarProducto  = userStore(state => state.agregarProducto)

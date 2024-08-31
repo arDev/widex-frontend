@@ -1,30 +1,20 @@
 import { useEffect, useState } from "react";
-import Swal from "sweetalert2";
 import Producto from "./Producto";
-import useFetchHook from "../hooks/useFetchHook";
 import "./Stock.css"
 import "./Producto.css";
-import { userStore } from "../stores/userStore";
-import PedidoStock from "./PedidoStock";
-import Busqueda from "./Busqueda";
-import Categorias from "./Categorias";
+import { userStore } from "../../stores/userStore";
+import PedidoStock from "../PedidoStock";
+import Busqueda from "../Busqueda";
+import Categorias from "../Categorias";
 import { FaBasketShopping } from "react-icons/fa6";
+import { IProducto } from "../../Interfaces/IProducto"
 
-export default function Products() {
-    const [productos, setProductos] = useState<IProductos[]>([])
+export default function Stock() {
+    const [productos, setProductos] = useState<IProducto[]>([])
     const tk = userStore(state => state.usuario?.token)
     const items  = userStore(state => state.items)
-
-    interface IProductos {
-        id: number,
-        codigo: string,
-        cantidad: number,
-        descripcion: string,
-        precio: number,
-        importe: number,
-        stock: number,
-        Imagen: string
-    }
+    
+    const idFolder = userStore(state => state.idFolder)
 
     const Actualizar = async () => {
         const URL = "http://localhost:5000/";
@@ -37,11 +27,13 @@ export default function Products() {
                 method: "POST",
                 headers: myHeaders,
             };
-            fetch(URL + "Productos/Listar/11", requestOptions)
+            console.log(URL + "Productos/Listar/" + idFolder)
+
+            fetch(URL + "Productos/Listar/" + idFolder, requestOptions)
                 .then((response) => response.text())
                 .then((result) => {
                     var data = JSON.parse(result);
-                    setProductos(data as IProductos[])
+                    setProductos(data as IProducto[])
                 })
                 .catch((error) => console.error(error));
         };
@@ -51,7 +43,7 @@ export default function Products() {
 
     useEffect(() => {
         Actualizar()
-    }, []);
+    }, [idFolder]);
 
     const [buscador, setBuscador] = useState("");
 
@@ -74,7 +66,7 @@ export default function Products() {
                 data-bs-toggle="modal"
                 data-bs-target="#myModal"
             >
-                Ver Pedido <FaBasketShopping className="ms-2" />
+                Ver Pedido ({items.length}) <FaBasketShopping className="ms-2" />
             </button>
 
             <Categorias />
@@ -86,7 +78,7 @@ export default function Products() {
         value={buscador}
         placeholder="Buscar Productos"
       />
-            <legend>Articulos</legend>
+            <legend>Articulos ({productos.length})</legend>
             <table className="table">
                 <thead>
                     <tr>

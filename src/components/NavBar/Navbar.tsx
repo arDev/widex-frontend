@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import { userStore } from "../stores/userStore";
-import logo from "../assets/imagenes/widex-logo-solo.png"
+import { userStore } from "../../stores/userStore";
+import logo from "../../assets/imagenes/widex-logo-solo.png"
 import "./Navbar.css"
+import { FaUserCircle } from "react-icons/fa";
 
 function Navbar() {
   const logueado = userStore(state => state.logueado)
@@ -19,16 +20,13 @@ function Navbar() {
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <Link className="nav-link active" to="/"> Home </Link>
+                  <Link className="nav-link" to="/ordenes">Ordenes</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/productos">Productos </Link>
+                  <Link className="nav-link" to="/stock">Stock</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/categorias">Categorias </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/logout">Salir </Link>
+                  <Link className="nav-link" to="/logout"><FaUserCircle />Salir</Link>
                 </li> : <></>
               </ul>
             </div>

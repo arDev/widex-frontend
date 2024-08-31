@@ -1,11 +1,9 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { userStore } from "../stores/userStore"
-import { appSetting } from "../settings/appsettings"
+import { userStore } from "../../stores/userStore"
+import { appSetting } from "../../settings/appsettings"
 
 function Login() {
-  const id = userStore(state => state.id)
-  const nombre = userStore(state => state.nombre)
   const usuario = userStore(state => state.usuario)
   const setUser = userStore(state => state.setUser)
   const navigate = useNavigate();
@@ -34,7 +32,7 @@ function Login() {
       postData( appSetting.urlApi + '/user/login', { username: 'ADMIN', password: 'ADMIN' })
         .then(data => {
           setUser(data)
-          navigate("/productos") 
+          navigate("/stock") 
         });
 
     }

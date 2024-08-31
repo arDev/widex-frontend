@@ -3,8 +3,8 @@ import logoWidex from "../../assets/imagenes/widex-dark-gray-logo.png";
 import { useNavigate } from "react-router-dom";
 import "./LoginForm.css"
 
-import { userStore } from "../stores/userStore";
-import useLogin from "../hooks/useLogin";
+import { userStore } from "../../stores/userStore";
+import useLogin from "../../hooks/useLogin";
 const Login = () => {
   const [usuario, setUsuario] = useState("ADMIN");
   const [contraseña, setContraseña] = useState("ADMIN");

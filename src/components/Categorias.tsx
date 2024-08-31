@@ -1,33 +1,37 @@
 import { useEffect, useState } from "react"
 import "./categorias.css"
+import { userStore } from "../stores/userStore"
 
 export default function Categorias() {
 
     const [data, setData] = useState<any>({})
-
+    const setId  = userStore(state => state.setId)
+    
     const Actualizar = async (id: string) => {
         const URL = "http://localhost:5000/";
-
+        
         const showData = async () => {
             const myHeaders = new Headers();
 
-            //            myHeaders.append("Authorization", "Bearer " + tk);
             const requestOptions = {
                 method: "GET",
                 headers: myHeaders,
             };
+            console.log(URL + "Categoria/Get/" + id)
             fetch(URL + "Categoria/Get/" + id, requestOptions)
                 .then((response) => response.text())
                 .then((result) => {
                     var data = JSON.parse(result);
                     setData(data)
-                    console.log(data)
+                    MandarId(data.seleccionada?.path)
                 })
                 .catch((error) => console.error(error));
         };
 
         showData()
     }
+
+    const MandarId = (id:string) => {setId(id)}
 
     useEffect(() => {
         Actualizar("1")

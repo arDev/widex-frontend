@@ -1,10 +1,11 @@
 import { create } from "zustand";
 import { IUserStore } from "../Interfaces/IUserStore";
+import { IUser } from "../Interfaces/IUser";
 
 export const userStore = create<IUserStore>((set,get) => ({
     id: 1,
     nombre: "Un nombre",
-    usuario: undefined,
+    idFolder: "Todos",
     logueado: false,
     items: [],
     agregarProducto: (producto) =>{
@@ -23,12 +24,12 @@ export const userStore = create<IUserStore>((set,get) => ({
         }
       },
       borrarProducto: (producto) =>{
-        set((state) => ({
-            items: state.items.filter((item) => item.id !== producto.id),
-          }));
+       set((state) => ({
+      items: state.items.filter((item) => item.id !== producto.id),
+    }));
       },
-    setNombre: (p: string) => {
-        set((state) => ({ nombre: state.nombre + "+" + p }))
+    setId: (p: string) => {
+        set(() => ({ idFolder: p }))
     },
     setUser: (p?: IUser | undefined) => {
         set(() => ({ usuario: p }))
@@ -36,6 +37,7 @@ export const userStore = create<IUserStore>((set,get) => ({
     },
     logout: () => {
         set(() => ({ usuario: undefined }))
+        set(() => ({ items: [] }))
         set(() => ({ logueado: false }))
     }
 }))
