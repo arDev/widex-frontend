@@ -42,7 +42,6 @@ const Orden = (props: any) => {
             <div className="col-12 ">
               <div className="row mb-3">
                 <div className="col-12 col-sm-6 col-md-8">
-                  <h4>Cliente</h4>
                   <address>
                     <strong>{data.orden.razon_soci}</strong><br />
                     {data.orden.cuit}<br />
@@ -55,12 +54,10 @@ const Orden = (props: any) => {
                 <div className="col-12 col-sm-6 col-md-4">
                   <h4 className="row">
                     <span className="col-6">Nro #</span>
-                    <span className="col-6 text-sm-end">1231312</span>
+                    <span className="col-6 text-sm-end">{data.orden.nro_pedido}</span>
                   </h4>
                   <div className="row">
-                    <span className="col-6">Codigo cliente</span>
-                    <span className="col-6 text-sm-end">{data.orden.cod_client}</span>
-                    <span className="col-6">Fecha order</span>
+                    <span className="col-6">Fecha</span>
                     <span className="col-6 text-sm-end">{data.orden.fecha_pedi}</span>
                   </div>
                 </div>
