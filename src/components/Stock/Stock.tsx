@@ -106,7 +106,7 @@ export default function Stock() {
             </table>
 
             <div className="modal" id="myModal">
-                <div className="modal-dialog modal-xl">
+                <div className="modal-dialog modal-dialog-scrollable modal-xl">
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title">Su Pedido</h5>
