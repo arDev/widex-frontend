@@ -3,7 +3,9 @@ import { userStore } from "../../stores/userStore";
 
 import { IProducto } from "../../Interfaces/IProducto";
 
-const Producto = (paramProducto: any) => {
+import "../../estilos/estilos.css"
+
+const Producto = (paramProducto: IProducto) => {
   const agregarProducto  = userStore(state => state.agregarProducto)
 
   const [contador, setContador] = useState(0);
@@ -36,11 +38,11 @@ const Producto = (paramProducto: any) => {
       <td>${producto.precio}</td>
       <td>
         <div className="controles">
-          <button className="botonesSumaResta" onClick={restar}>
+          <button className="botonesSumaResta btn-widex" onClick={restar}>
             -
           </button>
           <div>{contador}</div>
-          <button className="botonesSumaResta" onClick={sumar}>
+          <button className="botonesSumaResta btn-widex" onClick={sumar}>
             +
           </button>
         </div>

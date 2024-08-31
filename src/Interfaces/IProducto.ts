@@ -6,6 +6,6 @@ export interface IProducto {
     precio: number,
     importe: number,
     stock: number,
-    Imagen: string
+    Imagen: string,
   }
 
