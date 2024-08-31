@@ -1,14 +1,15 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import useLogin from './hooks/useLogin';
 import "./components/Login/LoginForm.css"
+import { userStore } from './stores/userStore';
 
 
 function App() {
   const [usuario, setUsuario] = useState("ADMIN");
   const [contraseña, setContraseña] = useState("ADMIN");
   const [login, setLogin] = useState(0);
-  
+  const setUser = userStore(state => state.setUser);
   
   const { cargando, error } = useLogin(login, usuario, contraseña);
 
@@ -16,6 +17,15 @@ function App() {
     setLogin(login + 1);
     e.preventDefault();
   };
+
+  useEffect( () => {
+  const widexLoguin = localStorage.getItem("WidexLogin")
+  if (widexLoguin != null) {
+    //setUser(JSON.parse(widexLoguin))
+    console.log("Encopntrado")
+  }
+},[])
+
   return (
     <div className="todo">
     <div className="wrapper">

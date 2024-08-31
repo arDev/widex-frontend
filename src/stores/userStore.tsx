@@ -4,9 +4,9 @@ import { IUser } from "../Interfaces/IUser";
 
 export const userStore = create<IUserStore>((set,get) => ({
     id: 1,
-    nombre: "Un nombre",
-    idFolder: "Todos",
+    idFolder: "0",
     logueado: false,
+    usuario: undefined,
     items: [],
     agregarProducto: (producto) =>{
         const { items } = get();
@@ -34,6 +34,7 @@ export const userStore = create<IUserStore>((set,get) => ({
     setUser: (p?: IUser | undefined) => {
         set(() => ({ usuario: p }))
         set(() => ({ logueado: true }))
+        localStorage.setItem("WidexLogin",JSON.stringify(p))
     },
     logout: () => {
         set(() => ({ usuario: undefined }))
