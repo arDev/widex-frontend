@@ -3,7 +3,7 @@
   }
   
    .nav-link {
-    position: relative;
+
     color: rgb(255, 255, 255);
     font-weight: 600;
   }
@@ -26,10 +26,3 @@
 
  
   
-  .navbar-toggler {
-    color: azure;
-  }
-  
-  .nav-user {
-    list-style:none;
-  } 
