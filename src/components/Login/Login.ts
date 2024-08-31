@@ -32,7 +32,7 @@ function Login() {
       postData( appSetting.urlApi + '/user/login', { username: 'ADMIN', password: 'ADMIN' })
         .then(data => {
           setUser(data)
-          navigate("/stock") 
+          navigate("/ordenes") 
         });
 
     }

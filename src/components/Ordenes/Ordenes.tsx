@@ -1,19 +1,19 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 import  useStock  from "../../hooks/useStock"
 
 import "./Ordenes.css";
+import "../../estilos/estilos.css"
+
 import { IComprobante } from "../../Interfaces/IComprobante";
+import { IOrden } from "../../Interfaces/IOrden";
+import Orden from "../Orden/Orden";
 const Ordenes = () => {
   const { data, cargando } = useStock("http://localhost:5000/Stock/Listar");
   const [buscar, setBuscar] = useState("");
-  const [prueba, setPrueba] = useState("Inicio");
+  const [order, setOrder] = useState<IOrden | null>(null);
  
 
-  const productoBusqueda = (e: any) => {
-    setBuscar(e.target.value);
-  };
 
   const resultado = !buscar
     ? data
@@ -27,10 +27,7 @@ const Ordenes = () => {
   const verOrden = (p:any ) => {
     //navigate("/verorden");
     
-    localStorage.setItem("Holis",JSON.stringify({"hola":p}))
-    const a = localStorage.getItem("Holis")
-    if(a!=null)
-        setPrueba(a)
+    setOrder({ nro_pedido : p.nro_pedido, cod_client : "Algo"})
   };
 
   return (
@@ -63,10 +60,10 @@ const Ordenes = () => {
 
                   <button
                 type="button"
-                className="btn btn-info float-end btn-sm"
+                className="btn float-end btn-sm btn-widex"
                 data-bs-toggle="modal"
                 data-bs-target="#myModal"
-                onClick={() => verOrden( orden.nro_pedido)}
+                onClick={() => verOrden( orden)}
             >
                 Ver
             </button>
@@ -80,23 +77,21 @@ const Ordenes = () => {
 
 
       <div className="modal" id="myModal">
-                <div className="modal-dialog modal-xl">
+                <div className="modal-dialog modal-dialog-scrollable modal-xl">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title">Su Pedido</h5>
+                            <h5 className="modal-title">Orden de Stock</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <p>{prueba}</p>
+                          <Orden order={order}/>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Seguir Comprando</button>
-                            <button type="button" className="btn btn-primary">Guardar</button>
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                         </div>
                     </div>
                 </div>
             </div>
-
     </div>
   );
 };

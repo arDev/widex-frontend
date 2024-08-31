@@ -40,7 +40,7 @@ function useLogin(login: number, usuario: string, contrasena:string) {
             }
             SetUser(user)
             localStorage.setItem("miToken", login.token);
-            navigate("/stock");
+            navigate("/ordenes");
           } else {
             setError("usuario y/o comtraseña incorrecto/s");
           }
