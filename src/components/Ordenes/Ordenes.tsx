@@ -35,6 +35,7 @@ const Ordenes = () => {
 
   return (
     <div className="container">
+      <legend>Ordenes</legend>
       <div className="tabla-busqueda">
         <table className="table table-hover ">
           <thead>

@@ -12,8 +12,8 @@ import { IProducto } from "../../Interfaces/IProducto"
 export default function Stock() {
     const [productos, setProductos] = useState<IProducto[]>([])
     const tk = userStore(state => state.usuario?.token)
-    const items  = userStore(state => state.items)
-    
+    const items = userStore(state => state.items)
+
     const idFolder = userStore(state => state.idFolder)
 
     const Actualizar = async () => {
@@ -37,7 +37,7 @@ export default function Stock() {
                 })
                 .catch((error) => console.error(error));
         };
-        
+
         showData()
     }
 
@@ -49,35 +49,40 @@ export default function Stock() {
 
     const busquedaProductos = (e: any) => {
         setBuscador(e.target.value);
-      };
-    
-      const resultado = !buscador
+    };
+
+    const resultado = !buscador
         ? productos
         : productos.filter((dato) =>
             dato.descripcion.toLowerCase().includes(buscador.toLowerCase())
-          );
+        );
 
     return (
         <div className="container">
-            
-            <button
-                type="button"
-                className="btn btn-primary float-end btn-pedido"
-                data-bs-toggle="modal"
-                data-bs-target="#myModal"
-            >
-                Ver Pedido ({items.length}) <FaBasketShopping className="ms-2" />
-            </button>
-
+            <div className="row ">
+                <div className="col "> 
+                <legend>Categorias</legend>
+                </div>
+                <div className="col mt-2">
+                    <button
+                        type="button"
+                        className="btn btn-primary float-end btn-pedido"
+                        data-bs-toggle="modal"
+                        data-bs-target="#myModal"
+                    >
+                        Ver Pedido ({items.length}) <FaBasketShopping className="ms-2" />
+                    </button>
+                </div>
+            </div>
             <Categorias />
 
             <Busqueda
-        className1="d-flex flex-row justify-content-center m-4"
-        className2="form-control border border-dark-subtle w-50"
-        onChange={busquedaProductos}
-        value={buscador}
-        placeholder="Buscar Productos"
-      />
+                className1="d-flex flex-row justify-content-center m-4"
+                className2="form-control border border-dark-subtle w-50"
+                onChange={busquedaProductos}
+                value={buscador}
+                placeholder="Buscar Productos"
+            />
             <legend>Articulos ({productos.length})</legend>
             <table className="table">
                 <thead>
@@ -91,8 +96,8 @@ export default function Stock() {
                 </thead>
                 <tbody>
                     {
-                       
-                       resultado.map((p) => (
+
+                        resultado.map((p) => (
                             <Producto paramProducto={p} />
                         ))
 

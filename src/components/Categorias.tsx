@@ -44,9 +44,6 @@ export default function Categorias() {
 
     return (
         <>
-            <legend>Categorias</legend>
-
-
             <nav aria-label="breadcrumb">
                 <ol className="breadcrumb">
                     {
@@ -66,7 +63,6 @@ export default function Categorias() {
                     ))
                 }
             </div>
-
         </>
     )
 }

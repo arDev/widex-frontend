@@ -1,69 +1,35 @@
 .navbar {
     background-color: #5c83a7;
-    height: 80px;
   }
   
-  .nav-link {
+   .nav-link {
     position: relative;
     color: rgb(255, 255, 255);
     font-weight: 600;
   }
-  
-  .nav-link:hover {
-    color: black;
-  }
-  
-  .nav-link-dropdown {
+
+  .nav-link-logout {
     position: relative;
-    padding: 10px;
-    color: rgb(0, 0, 0);
-    text-decoration-style: solid;
-    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    list-style: none;
   }
+
   
-  .nav-link-dropdown:hover {
+   .nav-link:hover {
     color: black;
   }
-  
   
   .logo-w {
-    height: 40px;
-    width: 50px;
+    width: 110px;
   }
-  
-  .logo-completo {
-    width: 100px;
-  }
-  
-  .logout-button {
-    background-color: #20bca0;
-    color: white;
-    font-size: 14px;
-    padding: 8px 20px;
-    border-radius: 50px;
-    text-decoration: none;
-    transition: 0.3s background-color;
-    list-style: none;
-    font-style: none;
-    border-color: #20bca0;
-    margin-right: 13px;
-  }
-  
-  .logout-button:hover {
-    color: white;
-    border-width: 2px;
-    border-style: solid;
-  }
+
+ 
   
   .navbar-toggler {
-    border: none;
-    font-size: rem;
-  }
-  
-  .offcanvas {
-    background-color: #5c83a7;
+    color: azure;
   }
   
   .nav-user {
     list-style:none;
-  }
+  } 
