@@ -1,3 +1,5 @@
+
+
 const Busqueda = ({ onChange, value, placeholder, className1, className2 }) => {
     return (
       <>
