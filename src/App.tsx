@@ -6,6 +6,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Stock from "./components/Stock/Stock";
 import Ordenes from "./components/Ordenes/Ordenes";
 import Logout from "./components/Login/Logout";
+import MiCuenta from "./components/MiCuenta/MiCuenta";
 
 function App() {
  
@@ -18,6 +19,7 @@ function App() {
       <Route path="/logout" element={<Logout />} />
       <Route element={<ProtectedRoute redirectPath='/' />}> 
         <Route path="/stock" element={<Stock />} />
+        <Route path="/micuenta" element={<MiCuenta />} />
         <Route path="/ordenes" element={<Ordenes />} />
       </Route>
     </Routes>

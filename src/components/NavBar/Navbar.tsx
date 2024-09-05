@@ -24,6 +24,9 @@ function Navbar() {
         <li className="nav-item">
         <Link className="nav-link" to="/stock">Stock</Link>
         </li>
+        <li className="nav-item">
+        <Link className="nav-link" to="/micuenta">Mi Cuenta</Link>
+        </li>
       </ul>
       <ul className="navbar-nav d-flex">
              <li className="nav-item ">

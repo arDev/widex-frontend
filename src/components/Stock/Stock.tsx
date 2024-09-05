@@ -4,16 +4,19 @@ import "./Stock.css"
 import "./Producto.css";
 import { userStore } from "../../stores/userStore";
 import PedidoStock from "../PedidoStock";
-import Busqueda from "../Busqueda";
 import Categorias from "../Categorias";
 import { FaBasketShopping } from "react-icons/fa6";
 import { IProducto } from "../../Interfaces/IProducto"
 
 export default function Stock() {
-    const [productos, setProductos] = useState<IProducto[]>([]);
-    const tk = userStore(state => state.usuario?.token);
-    const items = userStore(state => state.items);
-    const idFolder = userStore(state => state.idFolder);
+    const tk = userStore(state => state.usuario?.token)
+    const items = userStore(state => state.items)
+    const [productos, setProductos] = useState<IProducto[]>([])
+    const [filtrados, setFiltrados] = useState<IProducto[]>([]);
+    const [buscar,setBuscar] = useState<string>("");
+
+    const idFolder = userStore(state => state.idFolder)
+
     const Actualizar = async () => {
         const URL = "http://localhost:5000/";
         const showData = async () => {
@@ -23,32 +26,37 @@ export default function Stock() {
                 method: "POST",
                 headers: myHeaders,
             };
-            try {
-                const response = await fetch(URL + "Productos/Listar/" + idFolder, requestOptions);
-                const result = await response.text();
-                const data = JSON.parse(result);
-                setProductos(data as IProducto[]);
-            } catch (error) {
-                console.error(error);
-            }
+            console.log(URL + "Productos/Listar/" + idFolder)
+
+            fetch(URL + "Productos/Listar/" + idFolder, requestOptions)
+                .then((response) => response.text())
+                .then((result) => {
+                    var data = JSON.parse(result);
+                    setProductos(data as IProducto[])
+                    setFiltrados(data as IProducto[])
+                    setBuscar("")
+                })
+                .catch((error) => console.error(error));
         };
-        showData();
+
+        showData()
+    }
+
+    useEffect(() => {
+        Actualizar()
+    }, [idFolder]);
+
+    const busquedaProductos = (e: string) => {
+        setBuscar(e)
+        setFiltrados(productos.filter(p => p.descripcion.toUpperCase().indexOf(e.toUpperCase() ) > -1 ))
+        // console.log(e.target.value)
+        // console.log(productos.filter(p => p.descripcion.toUpperCase().indexOf(e.target.value.toUpperCase() ) > -1 ))
+
     };
     useEffect(() => {
         Actualizar();
     }, [idFolder]);
-    const [buscar, setBuscar] = useState("");
 
-    const productoBusqueda = (e: any) => {
-        setBuscar(e.target.value);
-    };
-    const resultado = !buscar
-        ? productos
-        : productos.filter(
-            (dato: IProducto) =>
-                dato.descripcion.toLowerCase().includes(buscar.toLowerCase()) ||
-                dato.codigo.includes(buscar)
-        );
     return (
         <div className="container">
             <div className="row ">
@@ -67,13 +75,21 @@ export default function Stock() {
                 </div>
             </div>
             <Categorias />
-            <Busqueda
-                className1="d-flex flex-row justify-content-center m-4"
-                className2="form-control border border-dark-subtle w-50"
-                onChange={productoBusqueda}
+
+            <div className="container">
+            <div className="d-flex flex-row justify-content-center m-4">
+                <input
+                type="search"
+                className="form-control border border-dark-subtle w-50"
+                placeholder={"Buscar..."}
+                onChange={(e) => busquedaProductos( e.target.value)}
                 value={buscar}
-                placeholder="Buscar Productos"
-            />
+                />
+            </div>
+            </div>
+
+            <></>
+
             <legend>Articulos ({productos.length})</legend>
             <table className="table">
                 <thead>
@@ -86,9 +102,11 @@ export default function Stock() {
                     </tr>
                 </thead>
                 <tbody>
-                    {resultado.map((p) => (
-                        <Producto key={p.codigo} paramProducto={p} />
-                    ))}
+                    {
+                        filtrados.map((p) => (
+                            <Producto producto={p} />
+                        )) 
+                    }
                 </tbody>
             </table>
             <div className="modal" id="myModal">

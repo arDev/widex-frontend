@@ -1,6 +1,6 @@
 
-
 const Busqueda = ({ onChange, value, placeholder, className1, className2 }) => {
+
     return (
       <>
         <div className="container">
@@ -9,7 +9,6 @@ const Busqueda = ({ onChange, value, placeholder, className1, className2 }) => {
               type="search"
               className={className2}
               placeholder={placeholder}
-              value={value}
               onChange={onChange}
             />
           </div>

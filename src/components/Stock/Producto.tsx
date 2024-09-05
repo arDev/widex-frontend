@@ -5,13 +5,12 @@ import { IProducto } from "../../Interfaces/IProducto";
 
 import "../../estilos/estilos.css"
 
-const Producto = (paramProducto: any) => {
+const Producto = ({producto}: any) => {
   const agregarProducto  = userStore(state => state.agregarProducto)
 
   const [contador, setContador] = useState(0);
-  const [producto, setProducto] = useState<IProducto>(paramProducto.paramProducto);
 
-  const AgregarProducto = () => {
+  const AgregarProducto = (producto: any) => {
     if (contador === 0) {
       alert("No se puede agregar un producto con cantidad 0");
       return;
@@ -52,7 +51,7 @@ const Producto = (paramProducto: any) => {
           <button
             type="button"
             className="agregar-boton"
-            onClick={() => AgregarProducto()}
+            onClick={() => AgregarProducto(producto)}
           >
             Agregar
           </button>
