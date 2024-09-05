@@ -33,6 +33,7 @@ const Producto = ({producto}: any) => {
   return (
     <tr key={producto.id}>
       <td><img className="imgProducto" src="https://eshop.widex.pro/-/media/Global/BABY/Baby%20440%20BTE/BABY440-rite-Pearlwhite.ashx" alt="fotoprueba" width={100} height={100} /></td>
+      <td>{producto.codigo}</td>
       <td>{producto.descripcion}</td>
       <td>${producto.precio}</td>
       <td>
