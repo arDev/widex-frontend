@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import { IComprobante } from "../../Interfaces/IComprobante";
-//import "./Tabla.css";
 
 const Tabla = (props: any) => {
     const { titulo, comps, ActualizarImporte } = props

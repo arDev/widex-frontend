@@ -26,6 +26,7 @@ const MiCuenta = () => {
         fetch("http://localhost:5000/Comprobantes/Listar", requestOptions)
             .then((response) => response.text())
             .then((result) => {
+                console.log(JSON.parse(result))
                 setComprobantes(JSON.parse(result).comprobantes);
             })
             .catch((error) => console.error(error));
