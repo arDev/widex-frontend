@@ -1,4 +1,3 @@
-
 import "./PedidoStock.css"
 import CarritoStock from "./CarritoStock";
 

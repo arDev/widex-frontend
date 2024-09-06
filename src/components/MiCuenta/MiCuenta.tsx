@@ -47,7 +47,7 @@ const MiCuenta = () => {
                                     </div>
                                     <div className="boton-pagar">
                                         <div className="texto-pagar">
-                                            Total a pagar : $ {Math.abs(importeAPargar.toFixed(2))}
+                                            Total a pagar : $ {Math.abs(Number(importeAPargar)).toFixed(2)}
                                         </div>
                                         <button className="btn btn-success">Pagar</button>
                                     </div>

@@ -101,6 +101,7 @@ export default function Stock() {
             <table className="table">
                 <thead>
                     <tr>
+                        <th scope="col"></th>
                         <th scope="col">Codigo</th>
                         <th scope="col">Descripcion</th>
                         <th scope="col">Precio</th>
