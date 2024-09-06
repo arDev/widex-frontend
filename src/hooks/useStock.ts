@@ -21,12 +21,10 @@ function useStock(url: string) {
         method: "GET",
         headers: myHeaders,
       };
-      console.log("useFetch")
       fetch(url, requestOptions)
         .then((response) => response.text())
         .then((result) => {
           setData(JSON.parse(result));
-          console.log(data)
           setCargando(null);
         })
         .catch((error) => {

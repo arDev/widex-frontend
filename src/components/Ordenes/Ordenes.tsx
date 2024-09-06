@@ -29,7 +29,8 @@ const Ordenes = () => {
 
   return (
     <div className="container">
-      <legend>Ordenes</legend>
+      <h2>Mis Ordenes</h2>
+      <hr />
       <Busqueda
         className1="d-flex flex-row justify-content-center m-3"
         className2="form-control form-control-lg border border-dark-subtle w-50  "
@@ -49,9 +50,16 @@ const Ordenes = () => {
           </thead>
           <tbody className="table-group" >
             {resultado.length === 0 ? (
-              <div className="d-flex justify-cotents-center">
-                <p>No se encontro ningun pedido</p>
-              </div>
+
+              <tr>
+                <td colSpan={5}>
+                  <div className="d-flex justify-cotents-center">
+                    <p>No se encontro ningun pedido</p>
+                  </div>
+                </td>
+              </tr>
+
+
             ) : (
               cargando ??
               resultado.map((orden: any) => (

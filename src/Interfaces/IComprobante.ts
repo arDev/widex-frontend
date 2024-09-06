@@ -8,4 +8,5 @@ export interface IComprobante {
     razon_soci: string,
     importe: number,
     estado: string,
+    pendiente: number
 }

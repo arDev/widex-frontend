@@ -1,28 +1,20 @@
 .navbar {
-    background-color: #5c83a7;
-  }
-  
-   .nav-link {
+  background-color: #5c83a7;
+}
 
-    color: rgb(255, 255, 255);
-    font-weight: 600;
-  }
+.nav-link {
 
-  .nav-link-logout {
-    position: relative;
-    color: rgb(255, 255, 255);
-    font-weight: 600;
-    list-style: none;
-  }
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+}
 
-  
-   .nav-link:hover {
-    color: black;
-  }
-  
-  .logo-w {
-    width: 110px;
-  }
+.nav-link-logout {
+  position: relative;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  list-style: none;
+}
 
- 
-  
+.logo-w {
+  width: 110px;
+}

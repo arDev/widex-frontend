@@ -1,16 +1,11 @@
-import "../../estilos/estilos.css"
-import logo from "../../assets/imagenes/widex-logo-solo.png"
-import { IOrden } from "../../Interfaces/IOrden";
 import { useEffect, useState } from "react";
 import { userStore } from "../../stores/userStore";
 
 const Orden = (props: any) => {
-  const [id, setId] = useState(0)
   const token = userStore(state => state.usuario?.token)
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<any>([]);
   
   useEffect(() => {
-    console.log(props.pId)
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Authorization", "Bearer " + token);
@@ -19,12 +14,11 @@ const Orden = (props: any) => {
       method: "GET",
       headers: myHeaders,
     };
-    console.log("http://localhost:5000/Stock/Listar/" + props.pId)
+    
     fetch("http://localhost:5000/Stock/Listar/" + props.pId, requestOptions)
       .then((response) => response.text())
       .then((result) => {
         setData(JSON.parse(result));
-        console.log(JSON.parse(result))
       })
       .catch((error) => {
         console.log(error);
@@ -76,7 +70,7 @@ const Orden = (props: any) => {
                       </thead>
                       <tbody className="table-group-divider">
                       {
-                        data.orden.items.map( (i) => (
+                        data.orden.items.map( (i: any) => (
                           <tr key={i.cod_articu}>
                           <th scope="row">{(i.cantidad).toFixed(2)}</th>
                           <td>{i.cod_articu} - {i.descripcion}</td>

@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react'
 import "./LoginForm.css"
-import { userStore } from '../../stores/userStore';
 import useLogin from '../../hooks/useLogin';
-
-
+import { userStore } from '../../stores/userStore';
+import { useNavigate } from "react-router-dom";
+import logo from "../../assets/imagenes/widex-dark-gray-logo.png"
 
 function LoginForm() {
   const [usuario, setUsuario] = useState("ADMIN");
   const [contraseña, setContraseña] = useState("ADMIN");
   const [login, setLogin] = useState(0);
-  const setUser = userStore(state => state.setUser);
+  const setUser = userStore(state=> state.setUser)
+  const navigate = useNavigate();
   
   const { cargando, error } = useLogin(login, usuario, contraseña);
 
@@ -19,17 +20,21 @@ function LoginForm() {
   };
 
   useEffect( () => {
-  const widexLoguin = localStorage.getItem("WidexLogin")
-  if (widexLoguin != null) {
-    //setUser(JSON.parse(widexLoguin))
-    console.log("Encopntrado")
-  }
+
+    var widexLogin: any = window.localStorage.getItem('WidexLogin')
+
+    const user = JSON.parse(widexLogin)
+    if (user !== null)
+    {
+     setUser(user) 
+     navigate("/ordenes")
+    }
 },[])
 
   return (
     <div className="todo">
     <div className="wrapper">
-      
+    <img className="me-2" src={logo} alt="logo" />
       <form onSubmit={handleSubmit}>
         <div className="text-login">
           <p>Usuario</p>

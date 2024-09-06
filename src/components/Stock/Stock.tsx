@@ -13,7 +13,7 @@ export default function Stock() {
     const items = userStore(state => state.items)
     const [productos, setProductos] = useState<IProducto[]>([])
     const [filtrados, setFiltrados] = useState<IProducto[]>([]);
-    const [buscar,setBuscar] = useState<string>("");
+    const [buscar, setBuscar] = useState<string>("");
 
     const idFolder = userStore(state => state.idFolder)
 
@@ -26,7 +26,6 @@ export default function Stock() {
                 method: "POST",
                 headers: myHeaders,
             };
-            console.log(URL + "Productos/Listar/" + idFolder)
 
             fetch(URL + "Productos/Listar/" + idFolder, requestOptions)
                 .then((response) => response.text())
@@ -48,7 +47,8 @@ export default function Stock() {
 
     const busquedaProductos = (e: string) => {
         setBuscar(e)
-        setFiltrados(productos.filter(p => p.descripcion.toUpperCase().indexOf(e.toUpperCase() ) > -1 ))
+        setFiltrados(productos.filter(p => p.descripcion.toUpperCase().indexOf(e.toUpperCase()) > -1))
+        
         // console.log(e.target.value)
         // console.log(productos.filter(p => p.descripcion.toUpperCase().indexOf(e.target.value.toUpperCase() ) > -1 ))
 
@@ -59,6 +59,13 @@ export default function Stock() {
 
     return (
         <div className="container">
+            <div className="row ">
+                <div className="col ">
+                    <h2>Orden de Stock</h2>
+                    <hr />
+                </div>
+            </div>
+
             <div className="row ">
                 <div className="col ">
                     <legend>Categorias</legend>
@@ -77,20 +84,20 @@ export default function Stock() {
             <Categorias />
 
             <div className="container">
-            <div className="d-flex flex-row justify-content-center m-4">
-                <input
-                type="search"
-                className="form-control border border-dark-subtle w-50"
-                placeholder={"Buscar..."}
-                onChange={(e) => busquedaProductos( e.target.value)}
-                value={buscar}
-                />
-            </div>
+                <div className="d-flex flex-row justify-content-center m-4">
+                    <input
+                        type="search"
+                        className="form-control border border-dark-subtle w-50"
+                        placeholder={"Buscar..."}
+                        onChange={(e) => busquedaProductos(e.target.value)}
+                        value={buscar}
+                    />
+                </div>
             </div>
 
             <></>
 
-            <legend>Articulos ({productos.length})</legend>
+            <legend>Articulos ({filtrados.length})</legend>
             <table className="table">
                 <thead>
                     <tr>
@@ -102,10 +109,13 @@ export default function Stock() {
                     </tr>
                 </thead>
                 <tbody>
+
                     {
                         filtrados.map((p) => (
-                            <Producto producto={p} />
-                        )) 
+                            <tr key={p.id}>
+                                <Producto producto={p} />
+                            </tr>
+                        ))
                     }
                 </tbody>
             </table>

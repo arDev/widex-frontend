@@ -1,5 +1,5 @@
 
-const Busqueda = ({ onChange, value, placeholder, className1, className2 }) => {
+const Busqueda = ({ onChange , placeholder, className1, className2 } : any) => {
 
     return (
       <>

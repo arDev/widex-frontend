@@ -1,19 +1,16 @@
 import Tabla from "./Tabla";
-//import "./MiCuenta.css";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { userStore } from "../../stores/userStore";
 
 const MiCuenta = () => {
     const [comprobantes, setComprobantes] = useState([]);
-    const [importeAPargar, setImporteAPagar] = useState(0);
-    const navigate = useNavigate();
+    const [importeAPargar, setImporteAPagar] = useState<Number>(0);
     const token = userStore(state => state.usuario?.token)
     const nombre = userStore(state => state.usuario?.nombre)
     const limiteCredito = userStore(state => state.usuario?.limiteCredito)
 
     const ActualizarImporte = (importeChk: any) => {
-        setImporteAPagar(Number((importeAPargar + importeChk).toFixed(2)));
+        setImporteAPagar(importeAPargar + importeChk);
     };
 
     useEffect(() => {
@@ -42,7 +39,7 @@ const MiCuenta = () => {
                         <div className="">
                             <div className="row ">
                                 <div className="col">
-                                    <h2>Hola, {nombre}!</h2>
+                                    <h2>Bienvenido, {nombre}!</h2>
                                 </div>
                                 <div className="col text-end">
                                     <div className="limite">
@@ -50,7 +47,7 @@ const MiCuenta = () => {
                                     </div>
                                     <div className="boton-pagar">
                                         <div className="texto-pagar">
-                                            Total a pagar : $ {importeAPargar}
+                                            Total a pagar : $ {Math.abs(importeAPargar.toFixed(2))}
                                         </div>
                                         <button className="btn btn-success">Pagar</button>
                                     </div>
@@ -59,14 +56,14 @@ const MiCuenta = () => {
                             <div className="row">
                                 <Tabla
                                     titulo="Pendientes"
-                                    comps={comprobantes.filter((x) => x.cancelado == false)}
+                                    comps={comprobantes.filter((x: any) => x.cancelado == false)}
                                     ActualizarImporte={ActualizarImporte}
                                 />
                             </div>
                             <div className="row">
                                 <Tabla
                                     titulo="Cancelados"
-                                    comps={comprobantes.filter((x) => x.cancelado == true)}
+                                    comps={comprobantes.filter((x: any) => x.cancelado == true)}
                                 />
                             </div>
                         </div>

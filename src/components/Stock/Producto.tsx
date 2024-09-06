@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { userStore } from "../../stores/userStore";
 
-import { IProducto } from "../../Interfaces/IProducto";
-
 import "../../estilos/estilos.css"
 
 const Producto = ({producto}: any) => {
@@ -31,9 +29,11 @@ const Producto = ({producto}: any) => {
   };
 
   return (
-    <tr key={producto.id}>
+      <>
       <td><img className="imgProducto" src="https://eshop.widex.pro/-/media/Global/BABY/Baby%20440%20BTE/BABY440-rite-Pearlwhite.ashx" alt="fotoprueba" width={100} height={100} /></td>
-      <td>{producto.descripcion}</td>
+      <td>{producto.descripcion}
+      <span className="badge bg-secondary">Invoke</span>
+      </td>
       <td>${producto.precio}</td>
       <td>
         <div className="controles">
@@ -57,7 +57,7 @@ const Producto = ({producto}: any) => {
           </button>
         </div>
       </td>
-    </tr>
+    </>
   );
 };
 

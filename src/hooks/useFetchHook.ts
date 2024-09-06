@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { userStore } from "../stores/userStore";
 
-export const useFetchHook = (url: string, tk?: string) => {
+export const useFetchHook = (url: string) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<any>("");

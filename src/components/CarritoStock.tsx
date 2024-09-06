@@ -11,7 +11,6 @@ const CarritoStock = () => {
       <tbody className="table-group-divider">
         {items.map((product) => (
           <tr key={product.id}>
-            <td>{product.id}</td>
             <td>
               <img
                 className="imgProducto"

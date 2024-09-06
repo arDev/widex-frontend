@@ -8,13 +8,20 @@ export  function Logout() {
     const navigate = useNavigate();
 
     const BorrarUser = () => {
+        localStorage.removeItem("WidexLogin")
         logout()
+        
     }
 
     useEffect(() => {
         BorrarUser()
         navigate("/");
     }, [])
+
+    return (
+        <>
+        </>
+    )
 }
 
 export default Logout;

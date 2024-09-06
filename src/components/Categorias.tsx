@@ -17,7 +17,7 @@ export default function Categorias() {
                 method: "GET",
                 headers: myHeaders,
             };
-            console.log(URL + "Categoria/Get/" + id)
+
             fetch(URL + "Categoria/Get/" + id, requestOptions)
                 .then((response) => response.text())
                 .then((result) => {
@@ -47,8 +47,8 @@ export default function Categorias() {
             <nav aria-label="breadcrumb">
                 <ol className="breadcrumb">
                     {
-                        data.padres?.map((x) => (
-                            <li className="breadcrumb-item"><a href="javascript:void(0)" onClick={() => clickLink(x.idfolder)}>{x.descrip}</a></li>
+                        data.padres?.map((x: any) => (
+                            <li className="breadcrumb-item"  key={x.idfolder}><a href="#" onClick={() => clickLink(x.idfolder)}>{x.descrip}</a></li>
                         ))
                     }
                     <li className="breadcrumb-item active" aria-current="page">{data.seleccionada?.descrip}</li>
@@ -56,8 +56,8 @@ export default function Categorias() {
             </nav>
             <div className="flex-container">
                 {
-                    data.hijos?.map((j) => (
-                        <button type="button" className="btn btn-secondary btn-sm btn-categoria" onClick={() => clickLink(j.idfolder)}>
+                    data.hijos?.map((j: any) => (
+                        <button key={j.idfolder} type="button" className="btn btn-secondary btn-sm btn-categoria" onClick={() => clickLink(j.idfolder)}>
                             {j.descrip}
                         </button>
                     ))

@@ -39,7 +39,7 @@ function useLogin(login: number, usuario: string, contrasena:string) {
               nombre:usuario
             }
             SetUser(user)
-            localStorage.setItem("miToken", login.token);
+            localStorage.setItem("WidexLogin", JSON.stringify(user));
             navigate("/ordenes");
           } else {
             setError("usuario y/o comtraseña incorrecto/s");

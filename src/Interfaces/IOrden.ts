@@ -1,5 +1,3 @@
-import { IProducto } from "./IProducto"
-
 export interface IOrden {
 
     id: number,

@@ -32,9 +32,8 @@ export const userStore = create<IUserStore>((set,get) => ({
         set(() => ({ idFolder: p }))
     },
     setUser: (p?: IUser | undefined) => {
-        set(() => ({ usuario: p }))
+        set(() => ({ usuario: p }))        
         set(() => ({ logueado: true }))
-        localStorage.setItem("WidexLogin",JSON.stringify(p))
     },
     logout: () => {
         set(() => ({ usuario: undefined }))
