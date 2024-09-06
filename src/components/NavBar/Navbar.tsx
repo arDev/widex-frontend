@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { userStore } from "../../stores/userStore";
 import logo from "../../assets/imagenes/widex-dark-gray-logo.png"
 import { FaUserCircle } from "react-icons/fa";
-import "./Navbar.css";
+import "./Navbar.css"
 
 function Navbar() {
   const logueado = userStore(state => state.logueado)
@@ -22,7 +22,7 @@ function Navbar() {
         <Link className="nav-link" to="/ordenes">Ordenes</Link>
         </li>
         <li className="nav-item">
-        <Link className="nav-link" to="/stock">Stock</Link>
+        <Link className="nav-link " to="/stock">Stock</Link>
         </li>
         <li className="nav-item">
         <Link className="nav-link" to="/micuenta">Mi Cuenta</Link>
