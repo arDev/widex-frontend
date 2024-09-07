@@ -7,10 +7,12 @@ import PedidoStock from "../PedidoStock";
 import Categorias from "../Categorias";
 import { FaBasketShopping } from "react-icons/fa6";
 import { IProducto } from "../../Interfaces/IProducto"
+import Swal from "sweetalert2";
 
 export default function Stock() {
     const tk = userStore(state => state.usuario?.token)
     const items = userStore(state => state.items)
+    const vaciar = userStore(state => state.vaciar)
     const [productos, setProductos] = useState<IProducto[]>([])
     const [filtrados, setFiltrados] = useState<IProducto[]>([]);
     const [buscar, setBuscar] = useState<string>("");
@@ -48,14 +50,63 @@ export default function Stock() {
     const busquedaProductos = (e: string) => {
         setBuscar(e)
         setFiltrados(productos.filter(p => p.descripcion.toUpperCase().indexOf(e.toUpperCase()) > -1))
-        
         // console.log(e.target.value)
         // console.log(productos.filter(p => p.descripcion.toUpperCase().indexOf(e.target.value.toUpperCase() ) > -1 ))
-
     };
-    useEffect(() => {
-        Actualizar();
-    }, [idFolder]);
+    const GuardarOrden = () => {
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Authorization", "Bearer " + tk);
+
+        var ordenWeb = {
+            Items: items,
+            //   Leyenda_1: document.getElementById("Leyenda_1").value,
+            //   Leyenda_2: document.getElementById("Leyenda_2").value,
+            //   Leyenda_3: document.getElementById("Leyenda_3").value,
+            //   Leyenda_4: document.getElementById("Leyenda_4").value,
+            //   Leyenda_5: document.getElementById("Leyenda_5").value,
+        };
+
+        const raw = JSON.stringify(ordenWeb);
+
+        const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: raw,
+        };
+
+        fetch("http://localhost:5000/Stock/GuardarOrden", requestOptions)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('No se puede guardar la orden')
+                }
+                response.text()
+            }
+            )
+            .then(() => {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Guardado correctamente!",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                vaciar();
+                document.getElementById('myModal')?.click();
+                //navigate("/ordenes");
+            })
+            .catch((error) => {
+                Swal.fire({
+                    position: "center",
+                    icon: "warning",
+                    title: error,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+            );
+    };
+
 
     return (
         <div className="container">
@@ -131,8 +182,9 @@ export default function Stock() {
                             <PedidoStock />
                         </div>
                         <div className="modal-footer">
+                            <button type="button" className="btn btn-danger float-start" data-bs-dismiss="modal" onClick={() => vaciar()}>Limpiar</button>
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Seguir Comprando</button>
-                            <button type="button" className="btn btn-primary">Guardar</button>
+                            <button type="button" className="btn btn-primary" onClick={() => GuardarOrden()}>Guardar</button>
                         </div>
                     </div>
                 </div>

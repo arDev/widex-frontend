@@ -31,14 +31,13 @@ function Navbar() {
             </li>
           </ul>
           </div>
-          <div className="position-absolute top-50 end-0 translate-middle-y">
-            <ul className="navbar-nav ">
-            <li className="nav-item pe-5">
-
-              <Link className="nav-link" to="/logout"><FaUserCircle className="" />Salir</Link>
+          <ul className="navbar-nav ">
+             <li className="nav-item ">
+             
+             <Link className="nav-link d-flex" to="/logout"><FaUserCircle className="me-2 mt-1"/>Salir</Link>
             </li>
           </ul>
-          </div>
+ 
     
         </div>
         

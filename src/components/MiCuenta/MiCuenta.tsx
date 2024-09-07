@@ -1,6 +1,7 @@
 import Tabla from "./Tabla";
 import { useEffect, useState } from "react";
 import { userStore } from "../../stores/userStore";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const MiCuenta = () => {
     const [comprobantes, setComprobantes] = useState([]);
@@ -9,8 +10,14 @@ const MiCuenta = () => {
     const nombre = userStore(state => state.usuario?.nombre)
     const limiteCredito = userStore(state => state.usuario?.limiteCredito)
 
+    const navigate = useNavigate();
+
     const ActualizarImporte = (importeChk: any) => {
         setImporteAPagar(importeAPargar + importeChk);
+    };
+
+    const irAPargar = () => {
+        navigate("https://www.widex.com.ar/pagos")
     };
 
     useEffect(() => {
@@ -50,7 +57,7 @@ const MiCuenta = () => {
                                         <div className="texto-pagar">
                                             Total a pagar : $ {Math.abs(Number(importeAPargar)).toFixed(2)}
                                         </div>
-                                        <button className="btn btn-success">Pagar</button>
+                                        <button className="btn btn-success" onClick={() => irAPargar()}>Pagar</button>
                                     </div>
                                 </div>
                             </div>

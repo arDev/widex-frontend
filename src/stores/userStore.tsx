@@ -39,5 +39,6 @@ export const userStore = create<IUserStore>((set,get) => ({
         set(() => ({ usuario: undefined }))
         set(() => ({ items: [] }))
         set(() => ({ logueado: false }))
-    }
+    },
+    vaciar: () => set(() => ({ items: [] }))
 }))

@@ -13,6 +13,5 @@ export interface IUserStore  {
     setId: (p: string) => void,
     setUser: (p?: IUser | undefined) => void,
     logout: () => void,
-    
-    
+    vaciar: () => void
 }
