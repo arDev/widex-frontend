@@ -1,10 +1,11 @@
 import Tabla from "./Tabla";
 import { useEffect, useState } from "react";
 import { userStore } from "../../stores/userStore";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { resumen } from "./resumen.type";
 
 const MiCuenta = () => {
-    const [comprobantes, setComprobantes] = useState([]);
+    const [comprobantes, setComprobantes] = useState<resumen[]>([]);
     const [importeAPargar, setImporteAPagar] = useState<Number>(0);
     const token = userStore(state => state.usuario?.token)
     const nombre = userStore(state => state.usuario?.nombre)
@@ -30,11 +31,11 @@ const MiCuenta = () => {
             headers: myHeaders,
         };
 
-        fetch("http://localhost:5000/Comprobantes/Listar", requestOptions)
+        fetch("http://localhost:5000/Comprobantes/resumen", requestOptions)
             .then((response) => response.text())
             .then((result) => {
-                console.log(JSON.parse(result))
-                setComprobantes(JSON.parse(result).comprobantes);
+                console.log(JSON.parse(result).pendientes)
+                setComprobantes(JSON.parse(result).pendientes);
             })
             .catch((error) => console.error(error));
     }, []);
@@ -64,15 +65,17 @@ const MiCuenta = () => {
                             <div className="row">
                                 <Tabla
                                     titulo="Pendientes"
-                                    comps={comprobantes.filter((x: any) => x.cancelado == false)}
+                                    comps={comprobantes}
                                     ActualizarImporte={ActualizarImporte}
                                 />
                             </div>
                             <div className="row">
-                                <Tabla
+                               { 
+                            /* <Tabla
                                     titulo="Cancelados"
                                     comps={comprobantes.filter((x: any) => x.cancelado == true)}
-                                />
+                                /> */
+                                }
                             </div>
                         </div>
                     </div>
