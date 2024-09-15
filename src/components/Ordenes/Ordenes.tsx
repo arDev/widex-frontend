@@ -19,6 +19,7 @@ const Ordenes = () => {
     ? data
     : data.filter(
       (dato: IComprobante) =>
+        dato.nro_pedido.toLowerCase().includes(buscar.toLocaleLowerCase()) ||
         dato.razon_soci.toLowerCase().includes(buscar.toLocaleLowerCase()) ||
         dato.fecha_pedi.includes(buscar)
     );
@@ -26,6 +27,35 @@ const Ordenes = () => {
   const verOrden = (p: number) => {
     setId(p)
   };
+
+  const estado = (param: number) => {
+    switch (param) {
+      case 1:
+        return <span className="badge bg-warning text-dark" >Ingresado</span>
+      case 2:
+        return <span className="badge bg-success" >Aprobado</span>
+      case 3:
+        return <span className="badge bg-secondary" >Cumplido</span>
+      default:
+        return <></>
+    }
+  }
+
+  const facturado = (param: number, estado: number) => {
+    if (estado == 2)
+      if (param <= 0)
+        return "facturado"
+      else
+        return " falta facturar"
+  }
+
+  const remitido = (param: number, estado: number) => {
+    if (estado == 2)
+      if (param <= 0)
+        return " y remitido"
+      else
+        return " y falta remitir"
+  }
 
   return (
     <div className="container">
@@ -41,11 +71,14 @@ const Ordenes = () => {
         <table className="table table-hover ">
           <thead>
             <tr>
-              <th>Numero</th>
-              <th>Tipo</th>
-              <th>Cliente</th>
               <th>Fecha</th>
+              <th>Tipo</th>
+              <th>Numero</th>
+              { //<th>Cliente</th> 
+              }
+              
               <th>Estado</th>
+              <th></th>
             </tr>
           </thead>
           <tbody className="table-group" >
@@ -64,12 +97,22 @@ const Ordenes = () => {
               cargando ??
               resultado.map((orden: any) => (
                 <tr key={orden.id}>
-                  <td>{orden.nro_pedido}</td>
-                  <td>{orden.tipo}</td>
-                  <td>{orden.razon_soci}</td>
                   <td>{orden.fecha_pedi}</td>
-                  <td>{orden.estado}
-
+                  <td>{orden.tipo}</td>
+                  <td>{orden.nro_pedido}</td>
+                  { //<td>{orden.razon_soci}</td>
+                  }
+                  
+                  <td>{estado(orden.estado)}
+                    {orden.estado == 2 ?
+                      <div
+                        className="badge bg-light text-dark"
+                      >{facturado(orden.aRemitir, orden.estado)}
+                        {remitido(orden.aFacturar, orden.estado)}
+                      </div> : <></>
+                    }
+                  </td>
+                  <td>
                     <button
                       type="button"
                       className="btn float-end btn-sm btn-widex"

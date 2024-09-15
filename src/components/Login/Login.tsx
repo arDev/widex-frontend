@@ -34,7 +34,7 @@ function Login() {
           setUser(data)
           navigate("/ordenes") 
         });
-
+        console.log("Hola")
     }
   }
     , []);

@@ -36,7 +36,7 @@ function useLogin(login: number, usuario: string, contrasena:string) {
             const user = {
               token:login.token,
               limiteCredito:login.limiteCredito ,
-              nombre:usuario
+              nombre:login.nombre
             }
             SetUser(user)
             localStorage.setItem("WidexLogin", JSON.stringify(user));

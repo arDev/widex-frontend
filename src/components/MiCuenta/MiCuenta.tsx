@@ -2,10 +2,10 @@ import Tabla from "./Tabla";
 import { useEffect, useState } from "react";
 import { userStore } from "../../stores/userStore";
 import { useNavigate } from "react-router-dom";
-import { resumen } from "./resumen.type";
+import { Comprobantes } from "./resumen.type";
 
 const MiCuenta = () => {
-    const [comprobantes, setComprobantes] = useState<resumen[]>([]);
+    const [comprobantes, setComprobantes] = useState<Comprobantes>();
     const [importeAPargar, setImporteAPagar] = useState<Number>(0);
     const token = userStore(state => state.usuario?.token)
     const nombre = userStore(state => state.usuario?.nombre)
@@ -34,8 +34,8 @@ const MiCuenta = () => {
         fetch("http://localhost:5000/Comprobantes/resumen", requestOptions)
             .then((response) => response.text())
             .then((result) => {
-                console.log(JSON.parse(result).pendientes)
-                setComprobantes(JSON.parse(result).pendientes);
+                console.log(JSON.parse(result))
+                setComprobantes(JSON.parse(result));
             })
             .catch((error) => console.error(error));
     }, []);
@@ -48,7 +48,7 @@ const MiCuenta = () => {
                         <div className="">
                             <div className="row ">
                                 <div className="col">
-                                    <h2>Bienvenido, {nombre}!</h2>
+                                    <h4>Bienvenido, {nombre}!</h4>
                                 </div>
                                 <div className="col text-end">
                                     <div className="limite">
@@ -65,7 +65,12 @@ const MiCuenta = () => {
                             <div className="row">
                                 <Tabla
                                     titulo="Pendientes"
-                                    comps={comprobantes}
+                                    comps={comprobantes?.pendientes}
+                                    ActualizarImporte={ActualizarImporte}
+                                />
+                                <Tabla
+                                    titulo="Cancelados"
+                                    comps={comprobantes?.cancelados}
                                     ActualizarImporte={ActualizarImporte}
                                 />
                             </div>

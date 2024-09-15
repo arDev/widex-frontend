@@ -6,3 +6,18 @@
 .btn-widex:hover {
     color: white;
 } 
+
+.btn-ped-estado {
+    background-color: #ececec;
+    color: black;
+}
+
+.btn-ped-ingresado {
+    background-color: #ff9e035f;
+    color: black;
+}
+
+.btn-ped-aprobado {
+    background-color: #10ff0361;
+    color: black;
+}
