@@ -19,7 +19,15 @@ const CarritoStock = () => {
               />
             </td>
             <td>{product.descripcion}</td>
-            <td>{product.cantidad}</td>
+            <td><div className="controles">
+          <button className="botonesSumaResta btn-widex" >
+            -
+          </button>
+          <div>{product.cantidad}</div>
+          <button className="botonesSumaResta btn-widex" >
+            +
+          </button>
+        </div></td>
             <td>$ {product.precio}</td>
             <td>$ {product.cantidad * product.precio}</td>
             <td>

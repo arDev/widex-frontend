@@ -10,12 +10,14 @@ export const userStore = create<IUserStore>((set,get) => ({
     items: [],
     agregarProducto: (producto) =>{
         const { items } = get();
+
+        const newItems = [...items];
     
-        const indice = items.findIndex(item => item.id == producto.id )
+        const indice = newItems.findIndex(item => item.id == producto.id )
     
         if(indice > -1)
         {
-            const newItems = items;
+            
             newItems[indice] = {...newItems[indice], cantidad: newItems[indice].cantidad + producto.cantidad}
             set(() => ({ items: newItems }))
         } else
