@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import "./categorias.css"
 import { userStore } from "../stores/userStore"
 
 export default function Categorias() {

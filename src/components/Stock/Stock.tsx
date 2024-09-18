@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Producto from "./Producto";
 import "./Stock.css"
-import "./Producto.css";
+
 import { userStore } from "../../stores/userStore";
 import PedidoStock from "../PedidoStock";
 import Categorias from "../Categorias";
@@ -124,7 +124,7 @@ export default function Stock() {
                 <div className="col mt-2">
                     <button
                         type="button"
-                        className="btn btn-primary float-end btn-pedido"
+                        className="btn btn-primary float-end"
                         data-bs-toggle="modal"
                         data-bs-target="#myModal"
                     >
