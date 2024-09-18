@@ -18,6 +18,10 @@ const PedidoStock = () => {
                 </thead>
                 <CarritoStock />
          </table>
+         <div className="d-flex justify-content-end">
+          <h5>Total: $236.256</h5>
+          </div>
+         
     </>
   );
 };
