@@ -1,17 +1,6 @@
-.acomodar-botones {
-    display: flex;
-    padding-top: 140px;
-    justify-content: end;
-    padding-right: 10px;
-  }
-  
+
   .total {
     display: flex;
     justify-content: flex-end;
     padding-right: 150px;
-  }
-  
-  
-  .imgProducto{
-    width: 80px;
   }

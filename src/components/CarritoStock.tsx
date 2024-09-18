@@ -25,23 +25,23 @@ const CarritoStock = () => {
                     <tr key={product.id}>
                         <td>
                             <img
-                                className="imgProducto"
+                                className="w-25"
                                 src="https://eshop.widex.pro/-/media/Global/BABY/Baby%20440%20BTE/BABY440-rite-Pearlwhite.ashx"
                                 alt="fotoprueba"
                             />
                         </td>
                         <td>{product.descripcion}</td>
-                        <td>
-                            <div className="controles">
+                        <td className="boton">
+                            <div className="d-flex align-items-center">
                                 <button
-                                    className="botonesSumaResta btn-widex"
+                                    className="btn  btn-sm me-2"
                                     onClick={() => disminuirCantidad(product)}
                                 >
                                     -
                                 </button>
                                 <div>{product.cantidad}</div>
                                 <button
-                                    className="botonesSumaResta btn-widex"
+                                    className="btn btn-sm ms-2"
                                     onClick={() => aumentarCantidad(product)}
                                 >
                                     +
@@ -51,12 +51,12 @@ const CarritoStock = () => {
                         <td>$ {product.precio}</td>
                         <td>$ {product.cantidad * product.precio}</td>
                         <td>
-                            <div className="d-flex justify-content-center align-items-center">
+                            <div className="d-flex align-items-center ps-2">
                                 <button
-                                    className="btn btn-danger"
+                                    className="btn btn-danger btn-xl"
                                     onClick={() => borrarProducto(product)}
                                 >
-                                    <CgCloseR />
+                                    <CgCloseR className=" d-flex align-items-center" />
                                 </button>
                             </div>
                         </td>

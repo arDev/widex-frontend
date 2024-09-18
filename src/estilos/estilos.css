@@ -4,6 +4,7 @@
 }
 
 .btn-widex:hover {
+    background-color: #20bca0;
     color: white;
 } 
 
@@ -21,3 +22,16 @@
     background-color: #10ff0361;
     color: black;
 }
+
+.boton div .btn{
+    background-color: #20bca0;
+    color: white;
+  }
+   .boton div .btn:hover{
+    background-color: #20bca0;
+    color: white;
+  } 
+  
+  
+  
+    

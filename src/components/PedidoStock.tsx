@@ -17,7 +17,7 @@ const PedidoStock = () => {
                   </tr>
                 </thead>
                 <CarritoStock />
-              </table>
+         </table>
     </>
   );
 };

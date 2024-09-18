@@ -54,10 +54,10 @@ export default function Categorias() {
                     <li className="breadcrumb-item active" aria-current="page">{data.seleccionada?.descrip}</li>
                 </ol>
             </nav>
-            <div className="flex-container">
+            <div className="d-flex flex-wrap flex-row">
                 {
                     data.hijos?.map((j: any) => (
-                        <button key={j.idfolder} type="button" className="btn btn-secondary btn-sm btn-categoria" onClick={() => clickLink(j.idfolder)}>
+                        <button key={j.idfolder} type="button" className="btn btn-secondary btn-sm m-2" onClick={() => clickLink(j.idfolder)}>
                             {j.descrip}
                         </button>
                     ))
